@@ -1,0 +1,15 @@
+{
+    "schema_version": "1.1.0",
+    "invariants": [
+        "no_fabrication_without_evidence",
+        "no_unconsented_config_mutation",
+        "traceability_required_for_critical_states",
+        "de_escalation_when_social_risk_high"
+    ],
+    "change_control": {
+        "requires_explicit_approval": true
+    },
+    "compatibility": {
+        "hosted_llm_safe_text_mode": true
+    }
+}

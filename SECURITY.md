@@ -1,21 +1,18 @@
 # Security Policy
 
-## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
-
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a potential security issue in this repository, please open a **private security advisory** or send an email to [contact email] describing the issue with steps to reproduce.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+## Supported Versions
+
+We consider the following versions to be supported:
+
+| Version | Supported |
+|---------|-----------|
+| v2.x    | yes       |
+| v1.x    | no        |
+
+## Response Goals
+
+We aim to respond to security reports within 72 hours.

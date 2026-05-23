@@ -1,0 +1,243 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{filecontents}
+
+\begin{filecontents*}{references.bib}
+@techreport{garay2026oear,
+  author = {Garay, Miguel},
+  title = {OEAR: A Deterministic Sovereign Control Plane for Verifiable Governance of Probabilistic Cognitive Systems},
+  institution = {Independent Research},
+  year = {2026},
+  type = {Technical Baseline v1},
+  url = {https://github.com/oear-project/oear},
+  note = {Certification Baseline v1, Tag: OEAR-cert-baseline-v1, SHA-256: 12949cc71ce56a23138bd8d530433252c52e0d867552b2996648360226e23665}
+}
+\end{filecontents*}
+
+\title{OEAR: A Deterministic Sovereign Control Plane for Verifiable Governance of Probabilistic Cognitive Systems}
+
+\author{
+Miguel Garay \\
+Independent Researcher \\
+Software Engineering and Cognitive Systems Governance \\
+\texttt{Elbichi123@gmail.com}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Probabilistic cognitive systems such as Large Language Models (LLMs) produce plausible outputs without deterministic guarantees. Most production integrations rely on heuristic filters and ad-hoc safeguards, resulting in silent governance drift and unverifiable trust. This paper presents OEAR, a deterministic sovereign control plane architecture for verifiable cognitive governance. OEAR separates probabilistic generation from policy enforcement through a fail-closed pipeline composed of risk gates, contractual output validation, append-only forensic journaling, synthetic certification harnesses, and cryptographic baselines. Governance correctness is established through mechanical certification using versioned synthetic vectors and invariant validation, rather than subjective evaluation. The system further incorporates longitudinal telemetry and differential shadow governance to detect gradual erosion of control thresholds across commits. The result is a reproducible, auditable, and mechanically verifiable governance layer suitable for responsible deployment of probabilistic inference systems.
+\end{abstract}
+
+\section{Problem Statement}
+\label{sec:problem}
+
+Large Language Models and probabilistic inference systems generate outputs that are statistically coherent but not deterministically guaranteed. Current governance approaches frequently rely on heuristic moderation, prompt discipline, or post-hoc filters. These techniques introduce silent drift, inconsistent enforcement of invariants, and non-verifiable trust assumptions. Software engineering practices require deterministic enforcement and reproducible verification, which are typically absent in cognitive inference pipelines.
+
+\section{Design Principle}
+\label{sec:principle}
+
+OEAR is built on a single governing principle:
+
+\textbf{Trust is placed in verifiable artifacts, not in the model.}
+
+Governance correctness is established through deterministic control flow, cryptographic anchoring, invariant validation, and mechanical certification rather than model behavior assumptions.
+
+\section{Architecture Overview}
+\label{sec:arch}
+
+OEAR implements a deterministic control plane layered above probabilistic generation. The protocol stack is divided into four layers:
+
+\begin{itemize}
+\item PS3 --- Integrity Sentinel: fail-closed invariant gate.
+\item PS2 --- Risk Classifier: semantic drift and contradiction scoring.
+\item PS1 --- Health Auditor: control plane integrity checks.
+\item PS0 --- Pulse Kernel: kernel hash and heartbeat verification.
+\end{itemize}
+
+Interaction pipeline:
+
+Input $\rightarrow$ State Reducer $\rightarrow$ Integrity Gate $\rightarrow$ Risk Scoring $\rightarrow$ Gate A/B/C $\rightarrow$ Route Select $\rightarrow$ Prompt Wrapper $\rightarrow$ LLM Call $\rightarrow$ Output Validator $\rightarrow$ Commit or Block $\rightarrow$ Journal Append $\rightarrow$ Metrics Hook.
+
+\section{Threat Model}
+\label{sec:threat}
+
+OEAR is designed to mitigate three primary threat vectors in cognitive deployments:
+\begin{itemize}
+    \item \textbf{Cognitive Injection}: Malicious inputs designed to bypass superficial moderation filters. OEAR's Gate C (Section \ref{sec:gates}) blocks these by invariant matching rather than heuristic guessing.
+    \item \textbf{Silent Policy Erosion}: Gradual drift in model behavior that slowly bypasses safety thresholds. The Differential Diagnosis (Section \ref{sec:telemetry}) detects this through longitudinal trend analysis.
+    \item \textbf{Governance Bypass}: Attempts to execute unvalidated paths. OEAR's fail-closed architecture ensures that any path not certified by the PS3 Sentinel results in a hard block.
+\end{itemize}
+
+\section{Risk Gate System}
+\label{sec:gates}
+
+Interactions are classified into three governance gates:
+
+\begin{itemize}
+\item Gate A --- Safe: normal controlled flow.
+\item Gate B --- Medium Risk: hardened wrapper and mandatory audit.
+\item Gate C --- High Risk or invariant violation: immediate block.
+\end{itemize}
+
+Gate C generates a forensic event including SHA-256 hash of the triggering input and a mandatory audit record.
+
+\section{Contractual Output Validator}
+\label{sec:validator}
+
+All generated outputs are validated against deterministic invariants:
+
+\begin{itemize}
+\item SOFT\_FAIL --- retriable with programmatic wrapper tightening.
+\item HARD\_FAIL --- immediate block with safe response.
+\end{itemize}
+
+No output is emitted without validator approval.
+
+\section{Forensic Journal}
+\label{sec:journal}
+
+OEAR maintains an append-only structured journal enforcing:
+
+\begin{itemize}
+\item temporal monotonicity
+\item invariant traceability
+\item gate and validator phase sequence correctness
+\item causal correlation with metrics records
+\end{itemize}
+
+\section{Synthetic Certification Harness}
+\label{sec:harness}
+
+Mechanical certification is performed using a deterministic synthetic harness with versioned test vectors. Version v1 includes 23 vectors covering:
+
+\begin{itemize}
+\item Gate A/B/C behavior
+\item invariant violations
+\item freeze conditions
+\item border threshold cases
+\end{itemize}
+
+The vector set is cryptographically frozen using SHA-256:
+
+Baseline v1 hash:
+
+\texttt{12949cc71ce56a23138bd8d530433252c52e0d867552b2996648360226e23665}
+
+\section{Mechanical Certification}
+\label{sec:cert}
+
+Certification verifies:
+
+\begin{itemize}
+\item baseline vector integrity hash
+\item invariant enforcement
+\item temporal monotonicity
+\item journal-metrics causal correlation
+\item expected gate block counts
+\end{itemize}
+
+Certification result is binary: PASS or FAIL.
+
+\section{Quality Gates in Version Control}
+\label{sec:cicd}
+
+Governance enforcement is integrated into version control:
+
+\begin{itemize}
+\item pre-commit --- invariant and correlation checks
+\item pre-push --- full synthetic harness execution
+\end{itemize}
+
+Commits or pushes are blocked if certification fails.
+
+\section{Longitudinal Telemetry}
+\label{sec:telemetry}
+
+OEAR records governance metrics per commit:
+
+\begin{itemize}
+\item block rate
+\item soft-fail rate
+\item freeze rate
+\item drift averages by vector family
+\end{itemize}
+
+This enables early detection of governance grip weakening.
+
+\section{Shadow Governance}
+\label{sec:shadow}
+
+Shadow auditing runs stricter policy thresholds in parallel without affecting production flow. Differential reports estimate projected block-rate changes under future governance policies.
+
+\section{Reproducibility}
+\label{sec:repro}
+
+Certification is reproducible as described in Section \ref{sec:cert} via:
+
+\begin{verbatim}
+python run_synthetic_harness.py
+python oear_validator.py --harness
+\end{verbatim}
+
+Any deviation from baseline metrics or invariant traces results in certification failure.
+
+\section{Artifact Availability and Baseline Freeze}
+\label{sec:artifact}
+
+The OEAR v1 artifact, including the full source code, policy kernel, and synthetic certification harness, is available at \url{https://github.com/oear-project/oear}. This technical baseline corresponds to the `v1.0-release` tag. The cryptographic hash of the certification baseline (synthetic vectors and expected invariant traces) is frozen as:
+
+\texttt{12949cc71ce56a23138bd8d530433252c52e0d867552b2996648360226e23665}
+
+Future versions will maintain backward compatibility with this baseline where possible, or provide clear migration paths and new baseline hashes.
+
+\section{Limitations}
+\label{sec:limitations}
+
+While OEAR provides a robust framework for verifiable governance, it has certain limitations:
+\begin{itemize}
+    \item \textbf{Scope of Invariants}: The effectiveness of OEAR is directly tied to the completeness and correctness of the defined invariants. Undefined or poorly specified invariants can lead to governance gaps.
+    \item \textbf{Computational Overhead}: The deterministic validation and journaling processes introduce computational overhead, which may impact latency in high-throughput scenarios.
+    \item \textbf{Human Oversight}: OEAR reduces, but does not eliminate, the need for human oversight. Interpretation of telemetry, refinement of invariants, and response to novel threats still require human intelligence.
+    \item \textbf{Probabilistic Core}: OEAR governs the outputs of probabilistic systems but does not alter their inherent non-deterministic nature. It provides a safety net, not a deterministic generator.
+\end{itemize}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+OEAR demonstrates that governance for probabilistic cognitive systems can be engineered as a deterministic, mechanically verifiable control layer. By combining invariant enforcement, synthetic certification, cryptographic baselines, and longitudinal telemetry, OEAR replaces heuristic trust with reproducible mechanical evidence as defined in this technical baseline \cite{garay2026oear}.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\appendix
+\section{Artifact Description}
+The OEAR v1 artifact is a self-contained governance distribution. It includes the core process stack, the policy kernel, and the synthetic certification harness. The artifact is designed to be portable and provides a master orchestrator (\texttt{oear\_ctl.py}) for all governance tasks.
+
+\section{Artifact Citation}
+To cite the OEAR architecture or this technical baseline, please use the provided BibTeX entry in the generated \texttt{references.bib} file or the following verbatim block:
+
+\begin{verbatim}
+@techreport{garay2026oear,
+  author = {Garay, Miguel},
+  title = {OEAR: A Deterministic Sovereign Control Plane 
+           for Verifiable Governance of Probabilistic 
+           Cognitive Systems},
+  institution = {Independent Research},
+  year = {2026},
+  type = {Technical Baseline v1},
+  url = {https://github.com/oear-project/oear},
+  note = {Certification Baseline v1, Tag: OEAR-cert-baseline-v1, SHA-256: 12949cc71ce56a23138bd8d530433252c52e0d867552b2996648360226e23665}
+}
+\end{verbatim}
+
+\end{document}
